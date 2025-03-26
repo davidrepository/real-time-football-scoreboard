@@ -36,6 +36,7 @@ app.prepare().then(() => {
         duration: duration * 60,
         endTime,
         status: "ongoing",
+        remainingSecondsLeft: 0,
       };
 
       matches = [...matches, newMatch];
@@ -55,12 +56,13 @@ app.prepare().then(() => {
       }
     );
 
-    socket.on(SOCKET_EVENTS.MATCH.FINISH, (matchId) => {
+    socket.on(SOCKET_EVENTS.MATCH.FINISH, ({ matchId, remainingTime }) => {
       const matchIndex = matches.findIndex((match) => match.id === matchId);
 
       if (matchIndex !== -1) {
         const updatedMatches = [...matches];
         updatedMatches[matchIndex].status = "finished";
+        updatedMatches[matchIndex].remainingSecondsLeft = remainingTime;
 
         io.emit(SOCKET_EVENTS.MATCHES.UPDATE, updatedMatches);
       } else {

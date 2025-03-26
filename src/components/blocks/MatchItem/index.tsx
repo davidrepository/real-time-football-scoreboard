@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useMatches } from "@/hooks";
 import { Match } from "@/types/match";
+import { useRemainingTime } from "@/hooks/useRemainingTime";
+import { CircularTimer } from "@/components/elements/CircularTimer";
 
 export const MatchItem: React.FC<{
   match: Match;
@@ -8,6 +10,8 @@ export const MatchItem: React.FC<{
   const { updateMatchScore, finishMatch } = useMatches();
   const [homeScore, setHomeScore] = useState(match.homeScore);
   const [awayScore, setAwayScore] = useState(match.awayScore);
+
+  const { remainingTime, formattedTime } = useRemainingTime(match);
 
   const isMatchFinished = match.status === "finished";
 
@@ -22,6 +26,11 @@ export const MatchItem: React.FC<{
       <h3>
         {match.homeTeam} {match.homeScore} - {match.awayScore} {match.awayTeam}
       </h3>
+      <CircularTimer
+        duration={match.duration}
+        remainingTime={remainingTime}
+        formattedTime={formattedTime}
+      />
 
       {!isMatchFinished && (
         <>
@@ -40,7 +49,9 @@ export const MatchItem: React.FC<{
           >
             Update Score
           </button>
-          <button onClick={() => finishMatch(match.id)}>Finish</button>
+          <button onClick={() => finishMatch(match.id, remainingTime)}>
+            Finish
+          </button>
         </>
       )}
     </div>

@@ -20,7 +20,7 @@ export const MatchList: React.FC = () => {
     });
 
   return (
-    <div>
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
       <div>
         <h2>Ongoing Matches</h2>
         {ongoingMatches.map((match: Match) => (
@@ -32,16 +32,6 @@ export const MatchList: React.FC = () => {
         {finishedMatches.map((match: Match) => (
           <MatchItem key={match.id} match={match} />
         ))}
-      </div>
-
-      <div
-        style={{ position: "absolute", fontSize: ".9rem", right: 0, top: 0 }}
-      >
-        <h2>Ongoing Matches (JSON)</h2>
-        <pre>{JSON.stringify(ongoingMatches, null, 2)}</pre>
-
-        <h2>Finished Matches (JSON)</h2>
-        <pre>{JSON.stringify(finishedMatches, null, 2)}</pre>
       </div>
     </div>
   );

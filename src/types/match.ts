@@ -8,4 +8,5 @@ export type Match = {
   startTime: number;
   endTime: number;
   status: "ongoing" | "finished";
+  remainingSecondsLeft: number;
 };

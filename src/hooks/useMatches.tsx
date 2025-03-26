@@ -42,8 +42,8 @@ export const useMatches = () => {
     []
   );
 
-  const finishMatch = useCallback((matchId: string) => {
-    socket.emit(SOCKET_EVENTS.MATCH.FINISH, matchId);
+  const finishMatch = useCallback((matchId: string, remainingTime: number) => {
+    socket.emit(SOCKET_EVENTS.MATCH.FINISH, { matchId, remainingTime });
   }, []);
 
   return {

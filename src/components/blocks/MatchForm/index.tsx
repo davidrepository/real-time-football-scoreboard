@@ -1,5 +1,6 @@
 "use client";
 
+import { Box } from "@/components/elements";
 import { useMatches } from "@/hooks";
 import { useState } from "react";
 
@@ -21,8 +22,8 @@ export const MatchForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Start a New Match</h2>
+    <Box>
+      <h1>Start a New Match</h1>
       <input
         type="text"
         placeholder="Home Team"
@@ -44,6 +45,6 @@ export const MatchForm: React.FC = () => {
         />
       </div>
       <button onClick={handleSubmit}>Start Match</button>
-    </div>
+    </Box>
   );
 };
