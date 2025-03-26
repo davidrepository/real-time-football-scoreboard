@@ -1,14 +1,16 @@
 "use client";
 
-import Counter from "@/components/Counter";
-import { Box } from "@/components/elements/Box";
+import { MatchForm, MatchList } from "@/components/blocks";
+import { Box } from "@/components/elements";
+
 import "@/styles/global.css";
 
 export default function Home() {
   return (
     <div>
       <main>
-        <Counter />
+        <MatchForm />
+        <MatchList />
         <Box>Box</Box>
       </main>
     </div>
